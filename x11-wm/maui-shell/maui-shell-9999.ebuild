@@ -1,3 +1,4 @@
+#not yet tested do not use !!!
 EAPI=7
 
 inherit git-r3 cmake
