@@ -27,6 +27,7 @@ REQUIRED_USE="wayland? ( vulkan )"
 DEPEND=">=dev-libs/flatbuffers-2.0.0
 	dev-libs/pugixml
 	>=dev-libs/wolfssl-4.7.0
+	media-libs/cubeb
 	dev-libs/xxhash
 	dev-util/spirv-tools
 	dev-qt/qtconcurrent
