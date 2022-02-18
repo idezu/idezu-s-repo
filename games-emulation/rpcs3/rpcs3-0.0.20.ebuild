@@ -1,4 +1,4 @@
-# Copyright 2019-2021 Gentoo Authors
+# Copyright 2019-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -15,13 +15,14 @@ SRC_URI="https://github.com/RPCS3/rpcs3/archive/v${PV}.tar.gz -> ${P}.tar.gz
 	https://github.com/RPCS3/llvm-mirror/archive/${LLVM_SHA}.tar.gz -> ${PN}-llvm-${LLVM_SHA:0:7}.tar.gz
 	https://github.com/asmjit/asmjit/archive/${ASMJIT_SHA}.tar.gz -> ${PN}-asmjit-${ASMJIT_SHA:0:7}.tar.gz
 	https://github.com/RPCS3/hidapi/archive/${HIDAPI_SHA}.tar.gz -> ${PN}-hidapi-${HIDAPI_SHA:0:7}.tar.gz
-	https://github.com/RPCS3/yaml-cpp/archive/${YAML_CPP_SHA}.tar.gz -> ${PN}-yaml-cpp-${YAML_CPP_SHA:0:7}.tar.gz"
+	https://github.com/RPCS3/yaml-cpp/archive/${YAML_CPP_SHA}.tar.gz -> ${PN}-yaml-cpp-${YAML_CPP_SHA:0:7}.tar.gz
+	https://github.com/intel/ittapi/archive/refs/tags/v${ITTAPI_VERSION}.tar.gz -> ${PN}-ittapi-${ITTAPI_VERSION}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-IUSE="alsa faudio joystick +llvm pulseaudio vulkan wayland discord video_cards_nvidia"
+IUSE="faudio joystick +llvm vulkan wayland discord video_cards_nvidia lto"
 REQUIRED_USE="wayland? ( vulkan )"
 
 DEPEND=">=dev-libs/flatbuffers-2.0.0
@@ -51,10 +52,8 @@ DEPEND=">=dev-libs/flatbuffers-2.0.0
 	virtual/opengl
 	virtual/udev
 	x11-libs/libX11
-	alsa? ( media-libs/alsa-lib )
 	faudio? ( app-emulation/faudio )
 	joystick? ( dev-libs/libevdev )
-	pulseaudio? ( media-sound/pulseaudio )
 	vulkan? (
 		media-libs/vulkan-loader
 		dev-util/glslang )
@@ -97,6 +96,7 @@ src_prepare() {
 
 src_configure() {
 	mycmakeargs=(
+		-DENABLE_LTO=$(usex lto)
 		-DBUILD_SHARED_LIBS=OFF
 		-DBUILD_LLVM_SUBMODULE=ON
 		"-DITTAPI_SOURCE_DIR=${WORKDIR}"
