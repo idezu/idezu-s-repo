@@ -19,6 +19,7 @@ BDEPEND="
 	virtual/pkgconfig
 "
 RDEPEND="
+	media-libs/opencv
 	app-arch/lz4:=
 	>=dev-libs/boost-1.55.0:=
 	dev-libs/lzo:2
