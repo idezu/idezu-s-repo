@@ -19,8 +19,8 @@ S=${WORKDIR}
 
 # TODO: check accessibility completeness
 RDEPEND="
-	>=gnome-base/gnome-core-libs-${PV}[cups?]
-	>=gnome-base/gnome-core-apps-${PV}[cups?,bluetooth?]
+	>=gnome-base/gnome-core-libs-40.0[cups?]
+	>=gnome-base/gnome-core-apps-40.0[cups?,bluetooth?]
 
 	>=gnome-base/gdm-41.0
 
