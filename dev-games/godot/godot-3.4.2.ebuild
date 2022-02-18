@@ -9,7 +9,7 @@ inherit desktop python-any-r1 scons-utils toolchain-funcs xdg
 DESCRIPTION="Multi-platform 2D and 3D game engine"
 HOMEPAGE="https://godotengine.org"
 
-SRC_URI="https://github.com/godotengine/${PN}/archive/${PV}-stable.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/godotengine/godot/archive/refs/tags/3.4.2-stable.zip -> ${P}.zip"
 S="${WORKDIR}/${P}-stable"
 KEYWORDS="~amd64 ~x86"
 
