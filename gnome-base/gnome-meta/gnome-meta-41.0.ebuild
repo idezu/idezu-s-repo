@@ -32,10 +32,10 @@ RDEPEND="
 	x11-themes/sound-theme-freedesktop
 
 	accessibility? (
-		app-accessibility/at-spi2-atk-2.38.0
-		app-accessibility/at-spi2-core-2.40.0
-		app-accessibility/orca-41.0
-		gnome-extra/mousetweaks-3.32.0
+		app-accessibility/at-spi2-atk
+		app-accessibility/at-spi2-core
+		>=app-accessibility/orca-41.0
+		gnome-extra/mousetweaks
 	)
 	classic? ( >=gnome-extra/gnome-shell-extensions-41.0 )
 	extras? ( >=gnome-base/gnome-extra-apps-${PV} )
