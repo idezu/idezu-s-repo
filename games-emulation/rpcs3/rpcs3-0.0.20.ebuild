@@ -90,6 +90,7 @@ src_prepare() {
 	sed -i -e '/find_program(CCACHE_FOUND/d' CMakeLists.txt || die
 	sed -i -e 's|FAudio.h|FAudio/FAudio.h|' rpcs3/Emu/Audio/FAudio/FAudioBackend.h || die
 	sed -i -r -e '/\s+add_compile_options\(-Werror=missing-noreturn\).*/d' buildfiles/cmake/ConfigureCompiler.cmake || die
+	mv "${WORKDIR}/ittapi-${ITTAPI_VERSION}" "${WORKDIR}/ittapi"
 	cmake_src_prepare
 }
 
@@ -97,14 +98,14 @@ src_configure() {
 	mycmakeargs=(
 		-DBUILD_SHARED_LIBS=OFF
 		-DBUILD_LLVM_SUBMODULE=ON
+		"-DITTAPI_SOURCE_DIR=${WORKDIR}"
 		-DUSE_PRECOMPILED_HEADERS=OFF
-		-DUSE_ALSA=$(usex alsa)
 		-DUSE_DISCORD_RPC=$(usex discord)
 		-DUSE_FAUDIO=$(usex faudio)
 		-DUSE_SYSTEM_FAUDIO=$(usex faudio)
 		-DUSE_LIBEVDEV=$(usex joystick)
 		-DUSE_NATIVE_INSTRUCTIONS=OFF
-		-DUSE_PULSE=$(usex pulseaudio)
+		-DUSE_SYSTEM_CUBEB=ON
 		-DUSE_SYSTEM_CURL=ON
 		-DUSE_SYSTEM_FFMPEG=ON
 		-DUSE_SYSTEM_FLATBUFFERS=ON
