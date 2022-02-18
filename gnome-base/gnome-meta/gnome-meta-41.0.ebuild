@@ -38,7 +38,7 @@ RDEPEND="
 		gnome-extra/mousetweaks
 	)
 	classic? ( >=gnome-extra/gnome-shell-extensions-41.0 )
-	extras? ( >=gnome-base/gnome-extra-apps-${PV} )
+	extras? ( gnome-base/gnome-extra-apps )
 "
 PDEPEND=">=gnome-base/gvfs-1.48.0[udisks]"
 
