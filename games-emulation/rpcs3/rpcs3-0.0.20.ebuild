@@ -8,6 +8,7 @@ DESCRIPTION="PS3 emulator and debugger."
 HOMEPAGE="https://rpcs3.net/ https://github.com/RPCS3/rpcs3"
 ASMJIT_SHA="eae7197fce03fd52a6e71ca89207a88ce270fb1a"
 HIDAPI_SHA="01f601a1509bf9c67819fbf521df39644bab52d5"
+ITTAPI_VERSION="3.18.12"
 LLVM_SHA="1c0ca194dc501ffb1674868babf8bd52658a0734"
 YAML_CPP_SHA="0b67821f307e8c6bf0eba9b6d3250e3cf1441450"
 SRC_URI="https://github.com/RPCS3/rpcs3/archive/v${PV}.tar.gz -> ${P}.tar.gz
@@ -67,6 +68,8 @@ PATCHES=(
 	"${FILESDIR}/${PN}-0004-add-use_wayland.patch"
 	"${FILESDIR}/${PN}-0006-vk.patch"
 	"${FILESDIR}/${PN}-0007-allow-use-of-system-spirv-and-glslang.patch"
+	"${FILESDIR}/${PN}-0008-system-cubeb.patch"
+	"${FILESDIR}/${PN}-0009-ittapi-remove-git-co.patch"
 )
 
 src_prepare() {
