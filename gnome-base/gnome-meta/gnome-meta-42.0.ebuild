@@ -19,25 +19,25 @@ S=${WORKDIR}
 
 # TODO: check accessibility completeness
 RDEPEND="
-	>=gnome-base/gnome-core-libs-40.0[cups?]
-	>=gnome-base/gnome-core-apps-40.0[cups?,bluetooth?]
+	>=gnome-base/gnome-core-libs-${PV}[cups?]
+	>=gnome-base/gnome-core-apps-${PV}[cups?,bluetooth?]
 
-	>=gnome-base/gdm-41.0
+	>=gnome-base/gdm-${PV}
 
 	>=x11-wm/mutter-${PV}
 	>=gnome-base/gnome-shell-${PV}[bluetooth?]
 	>=media-fonts/cantarell-0.301
 
-	>=x11-themes/gnome-backgrounds-41.0
+	>=x11-themes/gnome-backgrounds-${PV}
 	x11-themes/sound-theme-freedesktop
 
 	accessibility? (
 		app-accessibility/at-spi2-atk
 		app-accessibility/at-spi2-core
-		>=app-accessibility/orca-41.0
+		>=app-accessibility/orca-${PV}
 		gnome-extra/mousetweaks
 	)
-	classic? ( >=gnome-extra/gnome-shell-extensions-41.0 )
+	classic? ( >=gnome-extra/gnome-shell-extensions-${PV} )
 	extras? ( gnome-base/gnome-extra-apps )
 "
 PDEPEND=">=gnome-base/gvfs-1.48.0[udisks]"
