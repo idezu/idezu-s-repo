@@ -9,13 +9,13 @@ inherit desktop python-any-r1 scons-utils toolchain-funcs xdg
 DESCRIPTION="Multi-platform 2D and 3D game engine"
 HOMEPAGE="https://godotengine.org"
 
-SRC_URI="https://github.com/godotengine/godot/archive/refs/tags/3.4.2-stable.zip -> ${P}.zip"
+SRC_URI="https://github.com/godotengine/godot/archive/refs/tags/${P}stable.zip -> ${P}.zip"
 S="${WORKDIR}/${P}-stable"
 KEYWORDS="~amd64 ~x86"
 
 LICENSE="Apache-2.0 Boost-1.0 BSD CC-BY-3.0 MIT MPL-2.0 OFL-1.1 public-domain ZLIB"
 SLOT="0/3"
-IUSE="+bullet debug deprecated +enet +freetype lto +mbedtls +ogg +opus pulseaudio +raycast +theora +udev +upnp +vorbis +webp"
+IUSE="+bullet debug deprecated +enet +freetype lto +mbedtls +ogg +opus pulseaudio +raycast +theora +udev +upnp +vorbis +webp wayland mono"
 
 RDEPEND="
 	app-arch/lz4
@@ -48,6 +48,7 @@ RDEPEND="
 	upnp? ( net-libs/miniupnpc )
 	vorbis? ( media-libs/libvorbis )
 	webp? ( media-libs/libwebp )
+	mono? ( dev-utils/msbuild )
 "
 DEPEND="
 	${RDEPEND}
@@ -88,8 +89,8 @@ src_configure() {
 		builtin_zstd=no
 	)
 	myesconsargs+=(
-		# Mono bindings requires MSBuild which is only available on Windows
-		module_mono_enabled=no
+		# Mono bindings requires MSBuild
+		module_mono_enabled=$(usex mono)
 		module_bullet_enabled=$(usex bullet)
 		module_enet_enabled=$(usex enet)
 		module_freetype_enabled=$(usex freetype)
@@ -104,7 +105,13 @@ src_configure() {
 	)
 	# Misc options
 	myesconsargs+=(
-		platform=x11
+		if use_wayland
+		{
+			platform=wayland
+		}
+		else{
+			platform=x11
+		}
 		progress=yes
 		tools=yes
 		verbose=yes
