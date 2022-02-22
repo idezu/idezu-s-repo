@@ -48,7 +48,12 @@ RDEPEND="
 	upnp? ( net-libs/miniupnpc )
 	vorbis? ( media-libs/libvorbis )
 	webp? ( media-libs/libwebp )
-	mono? ( dev-utils/msbuild )
+	mono? ( 
+		dev-utils/msbuild 
+		dev-utils/pkgconfig 
+		>=dev-lang/mono-6.12.0
+		dev-dotnet/nuget
+	)
 "
 DEPEND="
 	${RDEPEND}
