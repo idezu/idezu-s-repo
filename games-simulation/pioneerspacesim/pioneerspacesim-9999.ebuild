@@ -8,7 +8,7 @@ inherit eutils git-r3 autotools
 
 WANT_LIBTOOL=latest
 EGIT_REPO_URI="https://github.com/pioneerspacesim/pioneer.git"
-KEYWORDS="amd64 x64"
+KEYWORDS="~amd64 ~x86"
 
 DESCRIPTION="Pioneer is a space adventure game set in our galaxy at the turn of the 31st century"
 HOMEPAGE="http://www.pioneerspacesim.net/"
