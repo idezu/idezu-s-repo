@@ -7,7 +7,7 @@ inherit autotools desktop
 
 DESCRIPTION="Pioneer is a space adventure game set in our galaxy at the turn of the 31st century."
 HOMEPAGE="https://pioneerspacesim.net/"
-SRC_URI="https://github.com/${PN}/pioneer/archive/${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/${PN}/pioneer/archive/${PV}.zip -> ${P}.zip"
 
 LICENSE="Apache-2.0 CC-BY-SA-3.0 DejaVu-licence GLEW GPL-3 ImageUsePolicy-NASASpitzerSpaceTelescope SIL-1.1"
 SLOT="0"
