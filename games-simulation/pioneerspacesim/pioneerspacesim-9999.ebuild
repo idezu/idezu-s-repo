@@ -1,45 +1,46 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=5
+EAPI=7
 
-inherit eutils git-r3 autotools
+inherit autotools desktop git-r3
 
-WANT_LIBTOOL=latest
+DESCRIPTION="Pioneer is a space adventure game set in our galaxy at the turn of the 31st century."
+HOMEPAGE="https://pioneerspacesim.net/"
 EGIT_REPO_URI="https://github.com/pioneerspacesim/pioneer.git"
-KEYWORDS="~amd64 ~x86"
 
-DESCRIPTION="Pioneer is a space adventure game set in our galaxy at the turn of the 31st century"
-HOMEPAGE="http://www.pioneerspacesim.net/"
-
-LICENSE="GPL-2"
+LICENSE="Apache-2.0 CC-BY-SA-3.0 DejaVu-licence GLEW GPL-3 ImageUsePolicy-NASASpitzerSpaceTelescope SIL-1.1"
 SLOT="0"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="
-	dev-libs/libsigc++
-	net-misc/curl
-	>=media-libs/assimp-3.2
-	media-libs/libpng
-	media-libs/libsdl2
-	media-libs/libvorbis
-	media-libs/sdl2-image
-	virtual/opengl
-	"
-DEPEND="${RDEPEND}
-	media-libs/freetype
-	"
-DOCS="AUTHORS.txt Modelviewer.txt Quickstart.txt README.txt"
+DEPEND="
+   net-misc/curl
+   dev-libs/libsigc++
+   media-libs/libsdl2
+   media-libs/sdl2-image
+   media-libs/freetype
+   media-libs/libvorbis
+   media-libs/libpng
+   media-libs/assimp
+   media-libs/mesa
+"
+RDEPEND="${DEPEND}"
 
 src_prepare() {
-	_elibtoolize
-	cd pioneer-thirdparty/
-	eautoconf
-	eautoheader
-	eautomake
+   default
+   export PIONEER_DATA_DIR="/usr/share/pioneerspacesim"
+   eautoreconf
 }
 
-src_configure() {
-	econf PIONEER_DATA_DIR=/usr/share/games/pioneer/data
-}
+src_install() {
+   export PIONEER_DATA_DIR="/usr/share/pioneerspacesim"
+   default
+
+   for size in 16 22 24 32 48 64 128 256; do
+      newicon -s ${size} application-icon/pngs/pioneer-${size}x${size}.png pioneer.png
+   done
+
+   make_desktop_entry "pioneer" "Pioneer" "pioneer" "Game"
+
+} 
