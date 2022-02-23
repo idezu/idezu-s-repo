@@ -34,6 +34,7 @@ DOCS="AUTHORS.txt Modelviewer.txt Quickstart.txt README.txt"
 
 src_prepare() {
 	_elibtoolize
+	eaclocal
 	eautoconf
 	eautoheader
 	eautomake
