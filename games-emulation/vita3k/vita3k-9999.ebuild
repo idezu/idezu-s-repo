@@ -32,7 +32,6 @@ src_configure() {
         local mycmakeargs=(
                 use lto -DENABLE_LTO=ON
                 -G Ninja
-                -Boost_USE_STATIC_LIBS=ON
 		-DCMAKE_TOOLCHAIN_FILE=./cmake/toolchain/linux-x64.cmake
         )
         cmake_src_configure
