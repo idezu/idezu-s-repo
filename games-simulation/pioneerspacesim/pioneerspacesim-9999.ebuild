@@ -34,7 +34,7 @@ DOCS="AUTHORS.txt Modelviewer.txt Quickstart.txt README.txt"
 
 src_prepare() {
 	_elibtoolize
-	eaclocal
+	cd pioneer-thirdparty/
 	eautoconf
 	eautoheader
 	eautomake
