@@ -1,46 +1,57 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=7
 
-inherit autotools desktop git-r3
+CMAKE_MAKEFILE_GENERATOR ?= emake
 
-DESCRIPTION="Pioneer is a space adventure game set in our galaxy at the turn of the 31st century."
-HOMEPAGE="https://pioneerspacesim.net/"
+inherit git-r3 cmake
+
 EGIT_REPO_URI="https://github.com/pioneerspacesim/pioneer.git"
 
-LICENSE="Apache-2.0 CC-BY-SA-3.0 DejaVu-licence GLEW GPL-3 ImageUsePolicy-NASASpitzerSpaceTelescope SIL-1.1"
+DESCRIPTION="Pioneer is a space adventure game set in our galaxy at the turn of the 31st century"
+HOMEPAGE="http://www.pioneerspacesim.net/"
+
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="lto"
 
-DEPEND="
-   net-misc/curl
-   dev-libs/libsigc++
-   media-libs/libsdl2
-   media-libs/sdl2-image
-   media-libs/freetype
-   media-libs/libvorbis
-   media-libs/libpng
-   media-libs/assimp
-   media-libs/mesa
-"
-RDEPEND="${DEPEND}"
+RDEPEND="
+	dev-libs/libsigc++
+	net-misc/curl
+	>=media-libs/assimp-3.2
+	media-libs/libpng
+	media-libs/libsdl2
+	media-libs/libvorbis
+	media-libs/sdl2-image
+	virtual/opengl
+	"
+DEPEND="${RDEPEND}
+	media-libs/freetype
+	"
+BDEPEND="
+	dev-utils/cmake
+	dev-vcs/git
+	sys-devel/gcc
+	"
+
+DOCS="AUTHORS.txt Modelviewer.txt Quickstart.txt README.txt"
 
 src_prepare() {
-   default
-   export PIONEER_DATA_DIR="/usr/share/pioneerspacesim"
-   eautoreconf
+	cmake_src_prepare
 }
 
-src_install() {
-   export PIONEER_DATA_DIR="/usr/share/pioneerspacesim"
-   default
+src_configure() {
+	mycmakeargs=(
+        use lto -DENABLE_LTO=ON
+		-G make
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=1
+    )
+    cmake_src_configure
+}
 
-   for size in 16 22 24 32 48 64 128 256; do
-      newicon -s ${size} application-icon/pngs/pioneer-${size}x${size}.png pioneer.png
-   done
-
-   make_desktop_entry "pioneer" "Pioneer" "pioneer" "Game"
-
-} 
+src_compile() {
+	cmake_src_compile
+}
