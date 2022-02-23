@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86"
 
 LICENSE="Apache-2.0 Boost-1.0 BSD CC-BY-3.0 MIT MPL-2.0 OFL-1.1 public-domain ZLIB"
 SLOT="0/3"
-IUSE="+bullet debug deprecated +enet +freetype lto +mbedtls +ogg +opus pulseaudio +raycast +theora +udev +upnp +vorbis +webp wayland"
+IUSE="+bullet debug deprecated +enet +freetype lto +mbedtls +ogg +opus pulseaudio +raycast +theora +udev +upnp +vorbis +webp wayland mono"
 
 RDEPEND="
 	app-arch/lz4
@@ -48,7 +48,11 @@ RDEPEND="
 	upnp? ( net-libs/miniupnpc )
 	vorbis? ( media-libs/libvorbis )
 	webp? ( media-libs/libwebp )
-	
+	mono? (
+		virtual/pkgconfig
+		dev-utils/msbuild
+		dev-dotnet/nuget
+	)	
 "
 DEPEND="
 	${RDEPEND}
@@ -90,7 +94,7 @@ src_configure() {
 	)
 	myesconsargs+=(
 		# Mono bindings requires MSBuild
-		module_mono_enabled=no
+		module_mono_enabled=$(usex mono)
 		module_bullet_enabled=$(usex bullet)
 		module_enet_enabled=$(usex enet)
 		module_freetype_enabled=$(usex freetype)
