@@ -3,24 +3,20 @@
 
 EAPI=7
 
-inherit desktop gnome2 meson pam readme.gentoo-r1 systemd toolchain-funcs udev
+inherit desktop gnome2 meson pam readme.gentoo-r1 systemd toolchain-funcs udev git-r3
 
 DESCRIPTION="GNOME Display Manager for managing graphical display servers and user logins"
 HOMEPAGE="https://wiki.gnome.org/Projects/GDM"
 
-SRC_URI="${SRC_URI}
-	https://dev.gentoo.org/~leio/distfiles/${PF}-patchset.tar.xz
-	branding? ( https://www.mail-archive.com/tango-artists@lists.freedesktop.org/msg00043/tango-gentoo-v1.1.tar.gz )
-"
+EGIT_REPO_URI="https://gitlab.gnome.org/GNOME/gdm.git"
 
 LICENSE="
 	GPL-2+
-	branding? ( CC-BY-SA-4.0 )
 "
 
 SLOT="0"
 
-IUSE="accessibility audit bluetooth-sound branding elogind fprint ipv6 plymouth selinux systemd tcpd test wayland"
+IUSE="accessibility audit bluetooth-sound  elogind fprint ipv6 plymouth selinux systemd tcpd test wayland"
 RESTRICT="!test? ( test )"
 REQUIRED_USE="^^ ( elogind systemd )"
 
