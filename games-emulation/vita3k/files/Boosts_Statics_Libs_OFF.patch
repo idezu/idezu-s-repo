@@ -1,0 +1,12 @@
+diff -Naur unmodified_CMakeLists/CMakeLists.txt modified_CMakeLists/CMakeLists.txt
+--- unmodified_CMakeLists/CMakeLists.txt	2022-02-23 17:53:07.066559190 +0100
++++ modified_CMakeLists/CMakeLists.txt	2022-02-23 17:45:36.729896000 +0100
+@@ -62,7 +62,7 @@
+ 
+ # Macro to adjust CMake paths to enable Boost as a static library and findable package for other dependencies in the project
+ macro(boost_set_paths)
+-	set (Boost_USE_STATIC_LIBS ON)
++	set (Boost_USE_STATIC_LIBS OFF)
+ 	find_package(Boost COMPONENTS filesystem system program_options QUIET)
+ 
+ 	if (${Boost_FOUND})

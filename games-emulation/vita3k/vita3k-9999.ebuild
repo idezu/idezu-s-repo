@@ -23,6 +23,10 @@ BDEPEND="
 	dev-util/cmake
 	"
 
+PATCHES=(
+	"${FILESDIR}/Boosts_Statics_Libs_OFF.patch"
+)
+
 src_prepare() {
         cmake_src_prepare
         git submodule  update --init --recursive
