@@ -102,7 +102,7 @@ src_configure() {
 		module_webp_enabled=$(usex webp)
 	)
 	# Misc options
-	myesconsargs+=(
+	local myesconsargs+=(
 		
 		progress=yes
 		tools=yes
