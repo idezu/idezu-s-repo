@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86"
 
 LICENSE="Apache-2.0 Boost-1.0 BSD CC-BY-3.0 MIT MPL-2.0 OFL-1.1 public-domain ZLIB"
 SLOT="0/3"
-IUSE="+bullet debug deprecated +enet +freetype lto +mbedtls +ogg +opus pulseaudio +raycast +theora +udev +upnp +vorbis +webp wayland"
+IUSE="+bullet debug deprecated +enet +freetype lto +mbedtls +ogg +opus pulseaudio +raycast +theora +udev +upnp +vorbis +webp"
 
 RDEPEND="
 	app-arch/lz4
@@ -103,7 +103,7 @@ src_configure() {
 	)
 	# Misc options
 	local myesconsargs+=(
-		
+		platform=x11
 		progress=yes
 		tools=yes
 		verbose=yes
@@ -114,9 +114,9 @@ src_configure() {
 		use_lto=$(usex lto)
 	)
 	if use wayland; then
-		myesconsargs +="platform=wayland"
+		myesconsargs+=(platform=wayland)
 	else
-		myesconsargs +="platform=x11"
+		myesconsargs+=(platform=x11)
 	fi
 }
 
