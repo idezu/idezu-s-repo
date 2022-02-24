@@ -103,13 +103,7 @@ src_configure() {
 	)
 	# Misc options
 	myesconsargs+=(
-		if use_wayland
-		{
-			platform=wayland
-		}
-		else{
-			platform=x11
-		}
+		
 		progress=yes
 		tools=yes
 		verbose=yes
@@ -119,6 +113,11 @@ src_configure() {
 		udev=$(usex udev)
 		use_lto=$(usex lto)
 	)
+	if use wayland; then
+		myesconsargs +="platform=wayland"
+	else
+		myesconsargs +="platform=x11"
+	fi
 }
 
 src_compile() {
