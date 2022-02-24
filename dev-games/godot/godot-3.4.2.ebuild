@@ -120,7 +120,7 @@ src_compile() {
 }
 
 src_install() {
-	local godot_binary="${PN}.x11.opt.tools"
+	local godot_binary="${PN}.x11.tools"
 
 	if [[ "${ARCH}" == "amd64" ]]; then
 		godot_binary="${godot_binary}.64"
