@@ -3,20 +3,15 @@
 
 EAPI=8
 
-inherit linux-info systemd cmake
+inherit linux-info systemd cmake git-r3
 
 DESCRIPTION="Container-based approach to boot a full Android system"
 HOMEPAGE="https://anbox.io/"
 
-COMMIT="84f0268012cbe322ad858d76613f4182074510ac" # 20.10.2021
-EXTCOMMIT="b9593c8b395318bb2bc42683a94f962564cc4664"
-SRC_URI="
-	https://github.com/anbox/anbox/archive/${COMMIT}.tar.gz -> ${P}.tar.gz
-	https://github.com/google/cpu_features/archive/${EXTCOMMIT}.tar.gz -> cpu_features-${EXTCOMMIT}.tar.gz
-"
-S="${WORKDIR}/${PN}-${COMMIT}"
-KEYWORDS="~amd64"
+EGIT_REPO_URI="https://github.com/anbox/anbox.git"
+EGIT_SUBMODULES=( 'external/cpu_features' )
 
+KEYWORDS="~amd64"
 LICENSE="GPL-3"
 SLOT="0"
 IUSE="X wayland systemd"
