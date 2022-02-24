@@ -113,11 +113,6 @@ src_configure() {
 		udev=$(usex udev)
 		use_lto=$(usex lto)
 	)
-	if use wayland; then
-		myesconsargs+=(platform=wayland)
-	else
-		myesconsargs+=(platform=x11)
-	fi
 }
 
 src_compile() {
