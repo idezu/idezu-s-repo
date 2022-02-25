@@ -23,6 +23,7 @@ IUSE="X wayland systemd"
 
 DEPEND="
 	>=app-containers/lxc-3.0.0
+	sys-apps/dbus
 	dev-cpp/properties-cpp
 	dev-cpp/sdbus-cpp
 	dev-cpp/gtest

@@ -46,7 +46,6 @@ src_prepare() {
 src_configure() {
 	mycmakeargs=(
         use lto -DENABLE_LTO=ON
-		-G make
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=1
     )
     cmake_src_configure

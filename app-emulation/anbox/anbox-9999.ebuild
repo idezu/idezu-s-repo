@@ -74,7 +74,7 @@ pkg_pretend() {
 src_prepare() {
 	cp "${FILESDIR}/FindGMock.cmake" "${S}/cmake" || die
 
-	if [[ "${PV}" != "99999999" ]]; then
+	if [[ "${PV}" != "9999" ]]; then
 		mv "${WORKDIR}"/cpu_features-"${EXTCOMMIT}"/* "${S}"/external/cpu_features || die
 	fi
 
@@ -92,7 +92,7 @@ src_configure() {
 		-DENABLE_WAYLAND=$(usex wayland)
 		-DBUILD_SHARED_LIBS=OFF
 	)
-	if [[ "${PV}" != "99999999" ]]; then
+	if [[ "${PV}" != "9999" ]]; then
 		mycmakeargs+=(-DANBOX_VERSION="${PV} (${COMMIT})")
 	fi
 
